@@ -56,7 +56,7 @@
 }
 
 .footer img{
-  height: 30px;
+  height: 40px;
   color: black;
 }
 .card-img-top{
@@ -86,9 +86,6 @@ hr {
 }
 
 
-
-
-/* show 3 items */
 .carousel-inner .active,
 .carousel-inner .active + .carousel-item,
 .carousel-inner .active + .carousel-item + .carousel-item {
@@ -117,7 +114,6 @@ hr {
   visibility: visible;
 }
 
-/* left or forward direction */
 .active.carousel-item-left + .carousel-item-next.carousel-item-left,
 .carousel-item-next.carousel-item-left + .carousel-item,
 .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
@@ -128,7 +124,6 @@ hr {
   visibility: visible;
 }
 
-/* farthest right hidden item must be abso position for animations */
 .carousel-inner .carousel-item-prev.carousel-item-right {
   position: absolute;
   top: 0;
@@ -138,7 +133,6 @@ hr {
   visibility: visible;
 }
 
-/* right or prev direction */
 .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
 .carousel-item-prev.carousel-item-right + .carousel-item,
 .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
@@ -152,4 +146,18 @@ hr {
 
 #myCarousel .carousel-inner .carousel-item {
   margin-right: 0%;
+}
+
+.banner{
+  height: 400px;
+  background-image: url(../images/loja1.jpg);
+  background-size: cover;
+  background-position: bottom;
+}
+
+
+.banner .filter{
+  height: 100%;
+  width: 100%;
+  background-color:rgba(255, 116, 0, 0.4);
 }
