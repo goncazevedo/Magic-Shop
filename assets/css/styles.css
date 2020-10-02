@@ -156,8 +156,48 @@ hr {
 }
 
 
-.banner .filter{
+.filter{
   height: 100%;
   width: 100%;
   background-color:rgba(255, 116, 0, 0.4);
+}
+
+
+.login_bg {
+  background-image:  url(/assets/images/painel.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form-box {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.list-group a{
+  color: #212529;
+  text-decoration: none;
+}
+
+.list-group a:hover{
+  text-decoration: none;
 }
