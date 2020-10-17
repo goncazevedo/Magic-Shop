@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/all.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <title>Magic Shop</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-primary navbar-expand-md " style="box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);">
+        <div class="container">
+           <a href="/home.html" class="navbar-brand"> <img src="assets/images/logo.png" style="width: 50px;" alt="Logo"> </a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Botão de navegação">
+              <i class="fas fa-bars"></i>
+           </button>
+           <div class="collapse navbar-collapse" id="menu" style="font-size:large;">
+              <div class="navbar-nav mr-auto">
+                 <a href="/about.html" class=" nav-item nav-link">Sobre</a>
+                 <a href="/catalogue.html" class=" nav-item nav-link"> Catalogo</a>
+              </div>
+              <div class="navbar-nav">
+                 <a href="/login.html" class=" nav-item nav-link "><i class="fas fa-sign-in-alt"></i> Entrar</a>
+              </div>
+           </div>
+  
+        </div>
+    </nav>
+
+    <div class="login_bg">
+        <div class="container text-white form-box mt-4 mb-4">
+            <h1 class="text-center styled-title">Cadastro</h1>
+            <form class="signup mb-5" >
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" class=" form-control">
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="pass">Senha</label>
+                        <input type="password" name="pass" id="pass" class="form-control">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="pass">Confirme sua Senha</label>
+                        <input type="password" name="pass_c" id="pass_c" class="form-control">
+                    </div>
+                    <div class="card text-danger pass_card d-none col-6 mx-auto" style="background-color: lightgray;">
+                        <div class="card-body">
+                            <p class="pass_confirm d-none">As senhas devem ser iguais.</p>
+                            <p class="valid_pass d-none">A senha deve possuir:</p>
+                            <ul class="valid_pass d-none">
+                                <li id="carac">No minimo 8 caracteres</li>
+                                <li id="mascmin">Letras maiusculas e minusculas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="genero">Genero</label>
+                    <select name="genero" id="genero" class="form-control">
+                        <option value="" selected>Selecione seu genero</option>
+                        <option value="HC">Homem Cis</option>
+                        <option value="MC">Mulher Cis</option>
+                        <option value="HT">Homem Trans</option>
+                        <option value="MT">Mulher Trans</option>
+                        <option value="NB">Não binário</option>
+                        <option value="OT">Outro</option>
+                    </select>
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class=" form-group ">
+                    <label for="">Classe</label>
+                    <div class="form-check">
+                        <input type="radio" name="classe" id="bruxo" value="1" class=" form-check-input form-control">
+                        <label for="bruxo" class=" form-check-label">Bruxo</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="classe" id="trouxa" value="0" class=" form-check-input form-control">
+                        <label for="trouxa" class=" form-check-label">Trouxa</label>
+                    </div>
+                    <div class="invalid-feedback class-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="form-group">
+                    <label for="att">Deseja receber atualizações por email?</label>
+                    <input type="checkbox" name="att" id="att" class="att_check">
+                </div>
+                <button type="submit" id="enviar" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>    
+    </div>
+
+    <div class="footer bg-primary">
+        <div class=" container d-flex justify-content-between">
+           <img src="assets/icons/jest.svg" alt="Logo jester" class=" d-none d-md-block">
+  
+           <div class="d-sm-flex justify-content-around f_content">
+              <ul class=" ">
+                 <h4>Endereço</h4>
+                 <li class=" list-unstyled">Mundo Bruxo de Londres, Beco diagonal, 93.</li>
+              </ul>
+              <ul class="">
+                 <h4>Serviços</h4>
+                 <li class=" list-unstyled"><a href="#">Travessuras</a></li>
+                 <li class=" list-unstyled"><a href="#">Magia trouxa</a></li>
+                 <li class=" list-unstyled"><a href="#">Serviço de Corujas</a></li>
+                 <li class=" list-unstyled"><a href="#">Contrabando</a></li>
+              </ul>
+              <ul class="">
+                 <h4>Contato</h4>
+                 <li class=" list-unstyled">Fred e George Weasley</li>
+                 <li class=" list-unstyled">Envie sua coruja com uma sugestão!</li>
+              </ul>
+           </div>
+           <img src="assets/icons/jest.svg" style="transform: scaleX(-1)" alt="Logo jester" class=" d-none d-md-block">
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

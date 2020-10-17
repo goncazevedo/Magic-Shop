@@ -73,7 +73,7 @@ hr {
   border-top: 2px solid rgba(0, 0, 0, 1);
 }
 
-.promocoes{
+.styled-title{
     font-family: Mystical;
     color: #8FB700;
     text-shadow: 2px 2px #900000;
@@ -168,7 +168,6 @@ hr {
   background-position: center;
   background-size: cover;
   height: 100%;
-  text-align: center;
   display: flex;
   align-items: center;
   position: relative;
