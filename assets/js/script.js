@@ -25,14 +25,14 @@ $(document).ready(function () {
   });
   
   $("form.signup").submit(function () {
-    validaAtt()
+    att_v = validaAtt()
     nome_v =  validatxt("#nome")
     email_v =validatxt("#email")
     passc_v = validatxt("#pass_c") 
     pass_v = validatxt("#pass") && validaSenha() && validaConfirma($("#pass"), $("#pass_c")) 
     class_v = validaClass()
     gen_v = validaGenero()
-    return nome_v && email_v && pass_v && passc_v && class_v && gen_v
+    return nome_v && email_v && pass_v && passc_v && class_v && gen_v && att_v
   })
 });
 
@@ -129,7 +129,17 @@ function validaGenero(){
 }
 function validaAtt() {
   let att = $("input.att_check:checked")
+  let r = true;
   if (att.length === 0) {
-    alert("Tem certeza que não deseja receber nossas promoções?")
+    r = confirm("Tem certeza que não deseja receber nossas promoções?")
   }
+  if (!r){
+    $("input.att_check").addClass("is-invalid")
+    $("input.att_check").removeClass("is-valid")
+  }else{
+    $("input.att_check").addClass("is-valid")
+    $("input.att_check").removeClass("is-invalid")
+  }
+
+  return r;
 }
