@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/all.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <title>Magic Shop</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-primary navbar-expand-md mb-5"
+        style="box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);">
+        <div class="container">
+            <a href="/home.html" class="navbar-brand"> <img src="assets/images/logo.png" style="width: 50px;"
+                    alt="Logo"> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu"
+                aria-expanded="false" aria-label="Botão de navegação">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="menu" style="font-size:large;">
+                <div class="navbar-nav mr-auto">
+                    <a href="/about.html" class=" nav-item nav-link">Sobre</a>
+                    <a href="/catalogue.html" class=" nav-item nav-link"> Catalogo</a>
+                </div>
+                <div class="navbar-nav">
+                    <a href="/login.html" class=" nav-item nav-link "><i class="fas fa-sign-in-alt"></i> Entrar</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mb-5 align-content-center">
+        <div class="card text-left col-6 border-primary">
+            <img class=" card-img-top" style="height: 475px;" src="/assets/images/pena_de_fenix.jpg" alt="pena de fenix">
+            <h4 class="card-title mb-4">Pena de Fẽnix</h4>
+            <div class="text-center">
+                <span id="like_amount" style="font-size: xx-large;">0</span>
+                <a href="#" id="like_btn" style="text-decoration: none;">
+                    <i id="like" data-like="0" class="far fa-thumbs-up fa-3x mr-3 mb-4"></i>
+                </a>
+                
+                <a href="#" id="dislike_btn" style="text-decoration: none;">
+                    <i id="dislike" data-dislike="0" class="far fa-thumbs-down fa-3x mb-4"></i>
+                </a>
+                <span id="dislike_amount" style="font-size: xx-large;">0</span>
+                
+            </div>
+            <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor malesuada arcu sodales
+                imperdiet. Vestibulum imperdiet eget magna vitae convallis. Praesent consequat mattis auctor.
+                Aliquam. 
+            </p>
+            <h3 class=" card-text text-danger"> ʛ$ 50,00</h3>
+            <div class="card-footer text-right">
+                <button class="btn btn-outline-primary" >Comprar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer bg-primary">
+        <div class=" container d-flex justify-content-between">
+            <img src="assets/icons/jest.svg" alt="Logo jester" class=" d-none d-md-block">
+            <div class="d-sm-flex justify-content-around f_content">
+                <ul class=" ">
+                    <h4>Endereço</h4>
+                    <li class=" list-unstyled">Mundo Bruxo de Londres, Beco diagonal, 93.</li>
+                </ul>
+                <ul class="">
+                    <h4>Serviços</h4>
+                    <li class=" list-unstyled"><a href="#">Travessuras</a></li>
+                    <li class=" list-unstyled"><a href="#">Magia trouxa</a></li>
+                    <li class=" list-unstyled"><a href="#">Serviço de Corujas</a></li>
+                    <li class=" list-unstyled"><a href="#">Contrabando</a></li>
+                </ul>
+                <ul class="">
+                    <h4>Contato</h4>
+                    <li class=" list-unstyled">Fred e George Weasley</li>
+                    <li class=" list-unstyled">Envie sua coruja com uma sugestão!</li>
+                </ul>
+            </div>
+            <img src="assets/icons/jest.svg" style="transform: scaleX(-1)" alt="Logo jester" class=" d-none d-md-block">
+        </div>
+    </div>
+
+    <script src="assets/js/jquery-3.5.1.js"></script>
+    <script src="assets/js/popper.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

@@ -34,7 +34,35 @@ $(document).ready(function () {
     gen_v = validaGenero()
     return nome_v && email_v && pass_v && passc_v && class_v && gen_v && att_v
   })
+
+  $("#like_btn").click(function(){like_dislike("like", "dislike")})
+  $("#dislike_btn").click(function(){like_dislike("dislike", "like")})
 });
+
+function like_dislike(active, inactive){
+  let like = $("#"+active)
+  let like_a = like.data(active)
+  let dislike = $("#"+inactive)
+  let dislike_a = dislike.data(inactive)
+  
+  if (like.hasClass("far")) {
+    like.removeClass("far")
+    like.addClass("fas")
+    like.data(active, like_a+1)
+    $("#"+active+"_amount").text(like_a+1)
+    if (dislike.hasClass("fas")) {
+      dislike.removeClass("fas")
+      dislike.addClass("far")
+      dislike.data(inactive, dislike_a-1)
+      $("#"+inactive+"_amount").text(dislike_a-1)  
+    }
+  } else {
+    like.removeClass("fas")
+    like.addClass("far")
+    like.data(active, like_a-1)
+    $("#"+active+"_amount").text(like_a-1)
+  }
+}
 
 function validatxt(id) {
   let field = $(id)
