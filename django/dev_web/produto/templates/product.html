@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+<body>
+
+    <div class="container mb-5 align-content-center mt-5">
+        <div class="card text-left col-6 border-primary">
+            <img class=" card-img-top" style="height: 475px;" src="{% static 'images/pena_de_fenix.jpg' %}" alt="pena de fenix">
+            <h4 class="card-title mb-4">Pena de Fẽnix</h4>
+            <div class="text-center">
+                <span id="like_amount" style="font-size: xx-large;">0</span>
+                <a href="#" id="like_btn" style="text-decoration: none;">
+                    <i id="like" data-like="0" class="far fa-thumbs-up fa-3x mr-3 mb-4"></i>
+                </a>
+                
+                <a href="#" id="dislike_btn" style="text-decoration: none;">
+                    <i id="dislike" data-dislike="0" class="far fa-thumbs-down fa-3x mb-4"></i>
+                </a>
+                <span id="dislike_amount" style="font-size: xx-large;">0</span>
+                
+            </div>
+            <p class="card-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc porttitor malesuada arcu sodales
+                imperdiet. Vestibulum imperdiet eget magna vitae convallis. Praesent consequat mattis auctor.
+                Aliquam. 
+            </p>
+            <h3 class=" card-text text-danger"> ʛ$ 50,00</h3>
+            <div class="card-footer text-right">
+                <button class="btn btn-outline-primary" >Comprar</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

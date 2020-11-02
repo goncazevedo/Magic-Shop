@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+    <div class="login_bg">
+        <div class="container text-white form-box mt-4 mb-4">
+            <h1 class="text-center styled-title">Cadastro</h1>
+            <form class="signup mb-5" >
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" class=" form-control">
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="pass">Senha</label>
+                        <input type="password" name="pass" id="pass" class="form-control">
+                    </div>
+                    <div class="form-group col-6">
+                        <label for="pass">Confirme sua Senha</label>
+                        <input type="password" name="pass_c" id="pass_c" class="form-control">
+                    </div>
+                    <div class="card text-danger pass_card d-none col-6 mx-auto" style="background-color: lightgray;">
+                        <div class="card-body">
+                            <p class="pass_confirm d-none">As senhas devem ser iguais.</p>
+                            <p class="valid_pass d-none">A senha deve possuir:</p>
+                            <ul class="valid_pass d-none">
+                                <li id="carac">No minimo 8 caracteres</li>
+                                <li id="mascmin">Letras maiusculas e minusculas</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+                    <label for="genero">Genero</label>
+                    <select name="genero" id="genero" class="form-control">
+                        <option value="" selected>Selecione seu genero</option>
+                        <option value="HC">Homem Cis</option>
+                        <option value="MC">Mulher Cis</option>
+                        <option value="HT">Homem Trans</option>
+                        <option value="MT">Mulher Trans</option>
+                        <option value="NB">Não binário</option>
+                        <option value="OT">Outro</option>
+                    </select>
+                    <div class="invalid-feedback">Campo Obrigatório</div>
+                </div>
+                <div class=" form-group ">
+                    <label for="">Classe</label>
+                    <div class="form-check">
+                        <input type="radio" name="classe" id="bruxo" value="1" class=" form-check-input form-control">
+                        <label for="bruxo" class=" form-check-label">Bruxo</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" name="classe" id="trouxa" value="0" class=" form-check-input form-control">
+                        <label for="trouxa" class=" form-check-label">Trouxa</label>
+                    </div>
+                    <div class="invalid-feedback class-feedback">Campo Obrigatório</div>
+                </div>
+                <div class="form-group">
+                    <label for="att">Deseja receber atualizações por email?</label>
+                    <input type="checkbox" name="att" id="att" class="att_check">
+                </div>
+                <button type="submit" id="enviar" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>    
+    </div>
+{% endblock body %}

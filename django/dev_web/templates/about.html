@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+    
+    <div class="banner mb-5 text-center">    
+        <div class=" filter">
+            <img src="{% static 'images/logo3.png' %}" alt="terceira logo dos weasley" style="height: 100%;">
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Quem somos</h2>
+        <img class="d-none d-sm-block d-md-none mb-5 mx-auto" src="{% static 'images/fred_george.png' %}" alt="Donos da Loja" style="height:400px;">
+        <div class="media">
+            <div class="media-body align-self-center mr-md-5">
+                <p class=" text-center">Fred and George Weasley were mischievous twin wizards born on 1 April, 1978 to Arthur Weasley and Molly Weasley (née Prewett).
+                    Although Fred was the oldest the two were both brilliant pranksters
+                    that co-founded and ran the joke shop Weasleys' Wizard Wheezes.
+                    They were members of both Dumbledore's Army and the Order of the Phoenix. </p>
+                </div>
+                <img class=" d-none d-md-block" src="{% static 'images/fred_george.png' %}" alt="Donos da Loja" style="height:400px;">
+                
+            </div>
+        </div>
+        
+        <div class="text-center text-white" style="background-color:#ff880e">
+            <h2 class="mb-3">Nossos Parceiros</h2>
+            <hr class="my-auto mx-auto flex-grow-1 mb-2" style="width: 20%; border-color:#fafafa">
+            <div class="row mb-5 mt-4 justify-content-center">
+                <div class="col-md-2 col-sm-6 mb-3 ">
+                    <img class=" " style="height: 60px;" src="{% static 'icons/livro_b.svg' %}" alt="icone de livro">
+                    <h5>Floreios e borrões</h5>
+                </div>
+                <div class="col-md-2 col-sm-6 mb-3">
+                    <img class=" " style="height: 60px;" src="{% static 'icons/varinha_b.svg' %}" alt="icone de varinha">
+                    <h5>Olivaras</h5>
+                </div>
+                <div class="col-md-2 col-sm-6 mb-3">
+                    <img class=" " style="height: 60px;" src="{% static 'icons/pocoes_b.svg' %}" alt="icone de poções">
+                    <h5>Apothecary</h5>
+                </div>
+                <div class="col-md-2 col-sm-6 mb-3">
+                    <img class=" " style="height: 60px;" src="{% static 'icons/vassoura_b.svg' %}" alt="icone de vassoura">
+                    <h5>Broomstix</h5>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <h2 class=" text-right mr-md-5">Sobre nós</h2>
+            <img class="mr-3 d-none d-sm-block d-lg-none mb-5 mx-auto" src="{% static '/images/loja.jpg' %}" alt="Frente da Loja" style="height: 350px;">
+            <div class="media mb-5">
+                <img class="mr-3 d-none d-lg-block" src="{% static '/images/loja.jpg' %}" alt="Frente da Loja" style="height: 350px;">
+                <div class="media-body align-self-center">
+                    <p class="text-center">
+                        Weasleys' Wizard Wheezes, also known as Weasley & Weasley,
+                        [1] was a joke shop located at Number 93 Diagon Alley founded by Fred and George Weasley.
+                        The shop contained practical joke objects, 
+                        such as Extendable Ears, a Reusable Hangman, Skiving Snackboxes, and Fred and George's special WonderWitch products, such as; 
+                        Love Potions, Ten-Second Pimple Vanishers, and Pygmy Puffs. There is also a section of Muggle Magic Tricks, which are said to do steady business, despite not being big sellers. The shop also sells a number of defensive magical objects.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+       
+    {% endblock body %}

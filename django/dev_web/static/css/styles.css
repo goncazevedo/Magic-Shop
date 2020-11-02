@@ -1,0 +1,202 @@
+
+.bgimage{
+    background-image: url(../images/painel.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+}
+
+.mid_image{
+  height: 400px;
+  width: 40%;
+  background-image: url(../images/frente.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+@media (min-width: 992px){
+  .mid_logo{
+    height: 350px;
+    width: 60%;
+    background-color: #FFEBCC;
+  }
+}
+
+@media (max-width: 992px){
+  .mid_logo{
+    height: 250px;
+    width: 60%;
+    background-color: #FFEBCC;
+  }
+}
+
+.mid_logo img {
+  height: 120%;
+  transform: translate(0%,-10%);
+}
+.footer{
+  width: 100%;
+  color: #fafafa;
+}
+
+.footer a{
+  color: #AF85CD;
+}
+
+.footer a:hover{
+  color: #fafafa;
+  text-decoration: none;
+}
+
+.footer .f_content{
+  padding: 30px 0 ;
+  width: 100%;
+}
+
+.footer img{
+  height: 40px;
+  color: black;
+}
+.card-img-top{
+  height: 350px;
+
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 0;
+  border-top: 2px solid rgba(0, 0, 0, 1);
+}
+
+.styled-title{
+    font-family: Mystical;
+    color: #8FB700;
+    text-shadow: 2px 2px #900000;
+    font-size: 6rem;
+}
+
+@font-face{
+    font-family: Mystical;
+    src: url(../webfonts/Mystical\ Eyes\ Personal\ Use.ttf);
+}
+
+
+.carousel-inner .active,
+.carousel-inner .active + .carousel-item,
+.carousel-inner .active + .carousel-item + .carousel-item {
+  display: block;
+}
+
+.carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+.carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+.carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item {
+  transition: none;
+}
+
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  position: relative;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item {
+  position: absolute;
+  top: 0;
+  right: -33.3333%;
+  z-index: -1;
+  display: block;
+  visibility: visible;
+}
+
+.active.carousel-item-left + .carousel-item-next.carousel-item-left,
+.carousel-item-next.carousel-item-left + .carousel-item,
+.carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+.carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item {
+  position: relative;
+  -webkit-transform: translate3d(-100%, 0, 0);
+          transform: translate3d(-100%, 0, 0);
+  visibility: visible;
+}
+
+.carousel-inner .carousel-item-prev.carousel-item-right {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  display: block;
+  visibility: visible;
+}
+
+.active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+.carousel-item-prev.carousel-item-right + .carousel-item,
+.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+.carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item {
+  position: relative;
+  -webkit-transform: translate3d(100%, 0, 0);
+          transform: translate3d(100%, 0, 0);
+  visibility: visible;
+  display: block;
+}
+
+#myCarousel .carousel-inner .carousel-item {
+  margin-right: 0%;
+}
+
+.banner{
+  height: 400px;
+  background-image: url(../images/loja1.jpg);
+  background-size: cover;
+  background-position: bottom;
+}
+
+
+.filter{
+  height: 100%;
+  width: 100%;
+  background-color:rgba(255, 116, 0, 0.4);
+}
+
+
+.login_bg {
+  background-image:  url(../images/painel.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.form-box {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+/* only used for background overlay not needed for centering */
+form:before {
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: -1;
+  border-radius: 10px;
+}
+
+.list-group a{
+  color: #212529;
+  text-decoration: none;
+}
+
+.list-group a:hover{
+  text-decoration: none;
+}
