@@ -26,7 +26,7 @@ SECRET_KEY = 'qt9jtm()ztv3k8c2(nwu^&&_@!qimt=9%n-)tk*yik7i@#ttfl'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["24b9ee5e9166.ngrok.io"]
 
 
 # Application definition
@@ -38,8 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'produto',
-    'usuario'
+    'user',
+    'product',
+    'category'
+    
 ]
 
 MIDDLEWARE = [
@@ -108,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 

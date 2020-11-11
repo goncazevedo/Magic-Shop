@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+
+<body>
+
+    <div class="container mb-5 align-content-center ">
+        <nav aria-label="breadcrumb mb-5">
+            <ol class="breadcrumb container mt-3">
+                <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'product:catalogo'%}">Catalogo</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{product.name}}</li>
+            </ol>
+        </nav>
+        <div class="row">
+            <img class="col-lg-6 col-12 mb-3" src="{% static 'p_images/' %}{{product.image}}" alt="{{product.name}}">
+            <div class="row col-lg-6 col-12">
+                <div class="col-12 mb-5">
+                    <h2 class="col-lg-12">{{product.name}}</h2>
+                    <div class=" mb-auto col-lg-6">
+                        <span id="like_amount" >0</span>
+                        <a href="#" id="like_btn" style="text-decoration: none;">
+                            <i id="like" data-like="0" class="far fa-thumbs-up mr-3 mb-4"></i>
+                        </a>
+                        
+                        <a href="#" id="dislike_btn" style="text-decoration: none;">
+                            <i id="dislike" data-dislike="0" class="far fa-thumbs-down mb-4"></i>
+                        </a>
+                        <span id="dislike_amount">0</span>        
+                    </div>
+                </div>
+                <p class=" text-center col-lg-12 mb-5">
+                    {{product.description}}
+                </p>
+
+                <div class=" d-lg-none mt-5 d-flex justify-content-between col-lg-6">
+                    <h3 class="text-danger"> ʛ$ {{product.price}}</h3>
+                    <button class="btn btn-outline-primary">Adicionar ao Carrinho</button>
+                </div>
+
+                <h3 class="d-none d-lg-block mt-auto col-lg-6"> ʛ$ {{product.price}}</h3>
+                <div class="d-none d-lg-block text-right mt-auto col-lg-6">
+                    <button class="btn btn-outline-primary">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+            
+    </div>
+
+    {% endblock body %}
