@@ -1,3 +1,8 @@
+.navbar_style{
+  z-index:9;
+  position: relative;
+  box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);
+}
 
 .bgimage{
     background-image: url(../images/painel.jpg);
@@ -163,7 +168,7 @@ hr {
 }
 
 
-.login_bg {
+.form_bg {
   background-image:  url(../images/painel.jpg);
   background-position: center;
   background-size: cover;
@@ -171,6 +176,7 @@ hr {
   display: flex;
   align-items: center;
   position: relative;
+  min-height: 92vh !important;
 }
 
 .form-box {
@@ -180,7 +186,7 @@ hr {
 }
 
 /* only used for background overlay not needed for centering */
-form:before {
+.forms:before {
   content: '';
   height: 100%;
   left: 0;
@@ -190,6 +196,12 @@ form:before {
   background-color: rgba(0,0,0,0.8);
   z-index: -1;
   border-radius: 10px;
+}
+#search_bar{
+  background-color: #fafafa;
+}
+#delete_button{
+  background-color: #fafafa;
 }
 
 .list-group a{

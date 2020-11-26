@@ -3,10 +3,10 @@
 
 
 {% block body %}
-    <div class="login_bg">
+    <div class="   form_bg">
         <div class="container text-white form-box mt-4 mb-4">
             <h1 class="text-center styled-title">Cadastro</h1>
-            <form class="signup mb-5" >
+            <form class=" forms signup mb-5" >
                 <div class="form-group">
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" id="nome" class=" form-control">
@@ -72,3 +72,10 @@
         </div>    
     </div>
 {% endblock body %}
+
+{% block footer %}
+    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script> 
+{% endblock footer %}

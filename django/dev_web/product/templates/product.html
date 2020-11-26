@@ -33,14 +33,20 @@
                 <p class=" text-center col-lg-12 mb-5">
                     {{product.description}}
                 </p>
-
+                
                 <div class=" d-lg-none mt-5 d-flex justify-content-between col-lg-6">
                     <h3 class="text-danger"> ʛ$ {{product.price}}</h3>
                     <button class="btn btn-outline-primary">Adicionar ao Carrinho</button>
                 </div>
 
                 <h3 class="d-none d-lg-block mt-auto col-lg-6"> ʛ$ {{product.price}}</h3>
-                <div class="d-none d-lg-block text-right mt-auto col-lg-6">
+                <div class="d-none d-lg-block text-right mt-auto col-lg-6" style="background-color: #fafafa;">
+                    {% if user.is_superuser %}
+                        <a href="{{product.get_edit_url}}"> <button class="btn btn-outline-info ">Editar</button></a>
+                        <form id="delete_button" method="POST" action="{{product.get_delete_url}}"> {% csrf_token %}
+                            <button  type="submit" class="btn btn-outline-danger ">Deletar</button>
+                        </form>
+                    {% endif %}
                     <button class="btn btn-outline-primary">Adicionar ao Carrinho</button>
                 </div>
             </div>

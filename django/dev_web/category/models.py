@@ -13,9 +13,13 @@ class Category(models.Model):
         verbose_name_plural = 'Categories'
 
     def get_absolute_url(self):
-        print(reverse("product:catalogo_por_categoria", args=[self.slug]))
         return reverse("product:catalogo_por_categoria", args=[self.slug])
     
+    def get_edit_url(self):
+        return reverse("category:editar_categoria", args=[self.id])
+    
+    def get_delete_url(self):
+        return reverse("category:deletar_categoria", args=[self.id])
 
     def __str__(self):
         return self.name

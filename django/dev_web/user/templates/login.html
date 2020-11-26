@@ -1,38 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block navbar %}
-
-    <nav class="navbar navbar-dark bg-primary navbar-expand-md fixed-top"
-        style="box-shadow: 0px 8px 8px -6px rgba(0,0,0,.5);">
-        <div class="container">
-                
-                <a href="{% url 'home' %}" class="navbar-brand"> <img src="{% static 'images/logo.png' %}"  style="width: 50px;" alt="Logo"> </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Botão de navegação">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="menu" style="font-size:large;">
-                    <div class="navbar-nav mr-auto">
-                    <a href="{% url 'sobre' %}" class=" nav-item nav-link">Sobre</a>
-                    <a href="{% url 'product:catalogo' %}" class=" nav-item nav-link"> Catalogo</a>
-                    </div>
-                    <div class="navbar-nav">
-                    <a href="{% url 'user:login' %}" class=" nav-item nav-link "><i class="fas fa-sign-in-alt"></i> Entrar</a>
-                    </div>
-                </div>
-            </div>
-    </nav>
-
-{% endblock navbar %}
-
 {% block body %}
-    <div class="min-vh-100 login_bg">
+    <div class="  form_bg">
         <div class=" form-box">
             <div class="row text-white">
                 <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
                     <h1 class="display-4 py-2 text-truncate styled-title">Login</h1>
                     <div class="px-2 login">
-                        <form action="" class="justify-content-center mb-3">
+                        <form action="" class="forms justify-content-center mb-3">
                             <div class="form-group">
                                 <label class="sr-only">Email</label>
                                 <input type="email" class="form-control" placeholder="harry.potter@example.com">

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+    <div class="form_bg  ">
+        <div class="container text-white form-box mt-4 mb-4">
+            <h1 class="text-center styled-title">{{name}}</h1>
+            <form method="POST" class="forms container mb-5"> {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <div class="">{{ field.label_tag }}</div>
+                        {{ field }}
+                        <div class="invalid-feedback">Campo Obrigatório</div>
+                    </div>
+                {% endfor %}
+                <input type="submit" value="Salvar" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+{% endblock body%}
+
+{% block footer %}
+    <script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script> 
+{% endblock footer %}

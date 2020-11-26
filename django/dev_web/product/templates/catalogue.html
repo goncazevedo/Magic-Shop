@@ -7,10 +7,14 @@
     <nav aria-label="breadcrumb mb-5">
         <ol class="breadcrumb container mt-5">
             <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-            {% if not category %}
+            {% if not category and not search %}
                 <li class="breadcrumb-item active" aria-current="page">Catalogo</li>
+            {% elif search %}
+                <li class="breadcrumb-item"><a href="{% url 'product:catalogo' %}">Catalogo</a></li>
+                <li class="breadcrumb-item active" aria-current="page" >{{search}}</li>
+
             {% else %}
-                <li class="breadcrumb-item"><a href={% url 'product:catalogo' %}>Catalogo</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'product:catalogo' %}">Catalogo</a></li>
                 <li class="breadcrumb-item active" aria-current="page" >{{category.name}}</li>
             {% endif %}
         </ol>
@@ -22,24 +26,37 @@
             <div class="dropdown-menu dropdown-menu-right">
                 {% for cat in categories %}
                     <a  class="dropdown-item" href="#">{{cat.name}}</a>
+                    
                 {% endfor %}
             </div>
         </div>
         <div class="row">
+            <form id="search_bar" action="{% url 'product:catalogo' %}" method="GET" class="search-bar col-12 mb-5">
+                <input class="col-lg-9 col-md-8" type="text" name="search" id="search" placeholder="O que voce procura?">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                  </button>
+            </form>
             <div class="row col-lg-9 col-md-8 mb-5 mt-5">
-                {% for prod in products|index:page %}
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="card mb-4 ">
-                            <a href="{{prod.get_absolute_url}}"><img class=" card-img-top" src="{% static 'p_images/'%}{{prod.image}}" alt="{{prod.image}}" style="height: 260px;"></a>
-                            <div class="card-body">
-                                <p class="card-subtitle text-muted">{{prod.category}}</p>
-                                <h5 class="card-title">{{prod.name}}</h5>
-                                <p class=" card-text text-danger"> ʛ$ {{prod.price}}</p>
+                {% if products|length <= 0 %}
+                    <h2>Nenhum produto com esse nome ou essa categoria foi encontrado</h2>
+                {% else %}                    
+                    {% for prod in products|index:page %}
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="card mb-4 ">
+                                <a href="{{prod.get_absolute_url}}"><img class=" card-img-top" src="{% static 'p_images/'%}{{prod.image}}" alt="{{prod.image}}" style="height: 260px;"></a>
+                                <div class="card-body">
+                                    <p class="card-subtitle text-muted">{{prod.category}}</p>
+                                    <h5 class="card-title">{{prod.name}}</h5>
+                                    <p class=" card-text text-danger"> ʛ$ {{prod.price}}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-
+                    {% endfor %}
+                {% endif %}
+                {% if user.is_superuser %}
+                    <a href="{% url 'product:criar_produto' %}"> <button class="btn btn-outline-primary text-right  mr-md-3 mr-lg-5 mt-lg-5 mt-md-3">Adicionar novo item</button></a>
+                {% endif %}
             </div>
             <div class="row col-lg-3 col-md-4 d-none d-md-block">
                 <div class=" col-12 mb-3">
@@ -47,8 +64,21 @@
                     <div class="nav flex-column nav-pills">
                         <a class=" nav-link border border-primary {% if not category %}active{% endif %}" href="{% url 'product:catalogo' %}">Todos</a>
                         {% for cat in categories %}
-                            <a class=" nav-link border border-top-0 border border-primary {% if cat == category %}active{% endif %}" href="{{cat.get_absolute_url}}">{{cat.name}}</a>
+                            <div class=" d-flex container justify-content-between nav-link border border-top-0 border border-primary {% if cat == category %}active{% endif %}">
+                                <a class=" " href="{{cat.get_absolute_url}}">{{cat.name}}</a>
+                                <div>
+                                    {% if user.is_superuser %}
+                                        <a href="{{cat.get_edit_url}}"> <i class="fas fa-edit"></i></a>
+                                        <form id="delete_button" method="POST" action="{{cat.get_delete_url}}"> {% csrf_token %}
+                                            <button  type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
                         {% endfor %}
+                        {% if user.is_superuser %}
+                            <a class=" nav-link border border-top-0 border-primary" href="{% url 'category:criar_categoria' %}" > Adicionar</a>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="col-12 mb-3">
@@ -65,42 +95,17 @@
                     <div class="card">
                         <div class="card-body">
                             <ul class="list-group">
-                                <a href="">
+                            {% for p in best_seller %}
+                                <a href="{{p.get_absolute_url}}">
                                     <div class=" media mb-4">
-                                        <img class="mr-3" src="{% static 'p_images/pena_de_fenix.jpg' %}" style="height: 60px;" alt="Mais vendidos">
+                                        <img class="mr-3" src="{% static 'p_images/'%}{{p.image}}" style="height: 60px; width: 60px;" alt="Mais vendidos">
                                         <div class="media-body">
-                                            <p> Pena de fenix</p>
-                                            <h5 class="text-danger">ʛ$ 50,00</h5>
+                                            <p>{{p.name}}</p>
+                                            <h5 class="text-danger">ʛ$ {{p.price}}</h5>
                                         </div>
                                     </div>
                                 </a>
-                                <a href="">
-                                    <div class=" media mb-4">
-                                        <img class="mr-3" src="{% static 'p_images/pena_de_fenix.jpg' %}" style="height: 60px;" alt="Mais vendidos">
-                                        <div class="media-body">
-                                            <p> Pena de fenix</p>
-                                            <h5 class="text-danger">ʛ$ 50,00</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class=" media mb-4">
-                                        <img class="mr-3" src="{% static 'p_images/pena_de_fenix.jpg' %}" style="height: 60px;" alt="Mais vendidos">
-                                        <div class="media-body">
-                                            <p> Pena de fenix</p>
-                                            <h5 class="text-danger">ʛ$ 50,00</h5>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="">
-                                    <div class=" media">
-                                        <img class="mr-3" src="{% static 'p_images/pena_de_fenix.jpg' %}" style="height: 60px;" alt="Mais vendidos">
-                                        <div class="media-body">
-                                            <p> Pena de fenix</p>
-                                            <h5 class="text-danger">ʛ$ 50,00</h5>
-                                        </div>
-                                    </div>
-                                </a>
+                            {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -111,21 +116,21 @@
 
         <nav aria-label="Page navigation " class="mb-5">
             <ul class="pagination">
-              <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                  <span class="sr-only">Previous</span>
-                </a>
-              </li>
-              {% for i in pages %}
-                <li class="page-item"><a class="page-link" href="{% url 'product:catalogo_por_pagina' i%}">{{i|add:1}}</a></li>
-              {% endfor %}
-              
-                <a class="page-link" href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                  <span class="sr-only">Next</span>
-                </a>
-              </li>
+                <li class="page-item {% if page == 0 %} disabled {% endif %}">
+                    <a class="page-link" href="{% if not page == 0 %} {% url 'product:catalogo_por_pagina' page|add:-1 %} {% endif %}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                {% for i in pages %}
+                    <li class="page-item {% if page == i %} active {% endif %}"><a class="page-link" href="{% url 'product:catalogo_por_pagina' i%}">{{i|add:1}}</a></li>
+                {% endfor %}
+                <li class="page-item {% if page == pages|length|add:-1 %} disabled {% endif %}">
+                        <a class="page-link " href="{% url 'product:catalogo_por_pagina' page|add:1 %}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                        </a>
+                </li>
             </ul>
         </nav>
     </div>

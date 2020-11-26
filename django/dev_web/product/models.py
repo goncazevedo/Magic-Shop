@@ -23,7 +23,13 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("product:produto", args=[self.id, self.slug])
+
     
+    def get_edit_url(self):
+        return reverse("product:editar_produto", args=[self.id])
+    
+    def get_delete_url(self):
+        return reverse("product:deletar_produto", args=[self.id])
 
     def __str__(self):
         return self.name
