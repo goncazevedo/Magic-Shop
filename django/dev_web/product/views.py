@@ -1,9 +1,12 @@
 from django.shortcuts import redirect, render
 from category.models import Category
 from product.models import Product
-from product.forms import ProductForm
+from product.forms import AjaxProductForm, ProductForm
 from django.utils.text import slugify
 from random import randint
+from django.http.response import HttpResponseRedirect
+from django.http import HttpResponse
+import json
 # Create your views here.
 
 
@@ -89,3 +92,84 @@ def delete(request, id):
     if request.POST:
         product.delete()
         return redirect('product:catalogo')
+
+def ajax(request):
+    # if request.method == 'POST':
+    #     form = form = AjaxProductForm(request.POST)
+    #     if form.is_valid():
+    #         post = form.save(commit=False)
+    #         post.author = request.user
+    #         post.save()
+    #         render(request, "ajax.html", {'form': form})
+    # else:
+    #     form = form = AjaxProductForm()
+
+    # return render(request, "ajax.html", {'form': form})
+
+    if request.method == 'POST':
+        response_data = {}
+
+        form = AjaxProductForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.slug = slugify(post.name)
+            post.save()
+
+        response_data['result'] = 'Create product successful!'
+        response_data['id'] = post.pk
+        response_data['name'] = post.name
+        response_data['category'] = post.category.name
+        response_data['price'] = request.POST.get("price")
+        response_data['stored_qtt'] = request.POST.get("stored_qtt")
+
+
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        p = Product.objects.all()
+        form = AjaxProductForm()
+
+        return render(request, "ajax.html", {'form': form, "prods":p})
+
+def ajax_update(request):
+
+    pk = request.POST.get("id")
+    product = Product.objects.get(id=pk)
+    if request.POST:
+        p = {}
+        p['id'] = product.id
+        p['name'] = product.name
+        p['category'] = product.category.id
+        p['price'] = str(product.price)
+        p['stored_qtt'] = str(product.stored_qtt)
+        response_data = {}
+
+        form = AjaxProductForm(p,instance= product)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.stored_qtt = int(request.POST.get("qtt"))
+            post.save()
+
+            response_data['result'] = 'Create product successful!'
+            response_data['id'] = post.pk
+            response_data['name'] = post.name
+            response_data['category'] = post.category.name
+            response_data['price'] = str(post.price)
+            response_data['stored_qtt'] = str(post.stored_qtt)
+            return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json")
+
+def ajax_remove(request):
+    pk = request.POST.get("id")
+    product = Product.objects.get(id=pk)
+    if request.POST:
+        product.delete()
+
+        return HttpResponse(
+            json.dumps({}),
+            content_type="application/json")

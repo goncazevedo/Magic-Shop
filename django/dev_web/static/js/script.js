@@ -1,3 +1,4 @@
+window.onload = function() { att_total(); }
 $(document).ready(function () {
   $("#myCarousel").on("slide.bs.carousel", function (e) {
     var $e = $(e.relatedTarget);
@@ -37,6 +38,15 @@ $(document).ready(function () {
 
   $("#like_btn").click(function(){like_dislike("like", "dislike")})
   $("#dislike_btn").click(function(){like_dislike("dislike", "like")})
+  $('#ajax-form').on('submit', function(event){
+      event.preventDefault();
+      console.log("form submitted!")  // sanity check
+      create_product();
+  });
+
+  troca_qtt()
+  remove_line()
+
 });
 
 function like_dislike(active, inactive){
@@ -170,4 +180,149 @@ function validaAtt() {
   }
 
   return r;
+}
+
+function create_product() {
+    console.log("create post is working!") // sanity check
+    $.ajaxSetup({ 
+        beforeSend: function(xhr, settings) {
+            function getCookie(name) {
+                var cookieValue = null;
+                if (document.cookie && document.cookie != '') {
+                    var cookies = document.cookie.split(';');
+                    for (var i = 0; i < cookies.length; i++) {
+                        var cookie = jQuery.trim(cookies[i]);
+                        // Does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+            if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+                // Only send the token to relative URLs i.e. locally.
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+            }
+        } 
+    });
+
+    $.ajax({
+      url : "/produto/ajax", // the endpoint
+      type : "POST", // http method
+      data : { name : $('#id_name').val(), category: $('#id_category').val(), price: $('#id_price').val(), stored_qtt: $('#id_stored_qtt').val()}, // data sent with the post request
+
+      // handle a successful response
+      success : function(json) {
+          $('#id_name').val('');
+          $('#id_category').val('')
+          $('#id_price').val('0')
+          $('#id_stored_qtt').val('0')
+          $("ajax-form").trigger("reset")
+          console.log(json); // log the returned json to the console
+          $("#linha-tabela").append("<tr><td style='visibility: hidden;'>"+json.id+"</td><td>"+json.name+"</td><td>"+json.category+"</td> <td>"+json.price+"</td> <td> <input type='number' id='qtt' value='"+json.stored_qtt+"'></td><td><button class='btn-danger remove'>X</button></td> </tr>");
+          att_total()
+          console.log("success"); // another sanity check
+      },
+
+      // handle a non-successful response
+      error : function(xhr,errmsg,err) {
+          $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+              " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+          alert("Não é possivel inserir elemento com nome repetido");
+      }
+    });
+};
+
+function att_total(){
+  var total = 0;
+  $('table tbody tr').each(function () {
+      var qtd = $('td', this).eq(4).children(":first").val();
+      var p = parseInt($('td', this).eq(3).text());
+      if (!isNaN(qtd) && !isNaN(p)) {
+          total += qtd*p;
+      }
+  });
+  console.log(total)
+  $("#total").text("$ "+total)
+}
+
+function troca_qtt() {
+  $.ajaxSetup({ 
+    beforeSend: function(xhr, settings) {
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
+            // Only send the token to relative URLs i.e. locally.
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    } 
+  });
+
+  $("#tabela").on("blur", "input#qtt", function(){
+    let row = $(this).parent().parent();
+    
+    $.ajax({
+      url : "/produto/ajax-update", // the endpoint
+      type : "POST", // http method
+      data : { id:parseInt($('td', row).eq(0).text()), qtt: $(this).val()}, // data sent with the post request
+
+      // handle a successful response
+      success : function(json) {
+          console.log(json); // log the returned json to the console
+          $('td', row).eq(4).val(json.stored_qtt)
+          att_total()
+          console.log("success"); // another sanity check
+      },
+
+      // handle a non-successful response
+      error : function(xhr,errmsg,err) {
+          $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+              " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+      }
+    });
+  })
+}
+
+function remove_line(){
+  $("#tabela").on("click", "button.remove", function(){
+    let row = $(this).parent().parent();
+    console.log(parseInt($('td', row).eq(0).text())); // another sanity check
+    $.ajax({
+      url : "/produto/ajax-remove", // the endpoint
+      type : "POST", // http method
+      data : { id:parseInt($('td', row).eq(0).text())}, // data sent with the post request
+
+      // handle a successful response
+      success : function(json) {
+          console.log(json); // log the returned json to the console
+          row.remove()
+          att_total()
+          console.log("success"); // another sanity check
+      },
+
+      // handle a non-successful response
+      error : function(xhr,errmsg,err) {
+          $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+              " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+          console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+      }
+    });
+  });
 }

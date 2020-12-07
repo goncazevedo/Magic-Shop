@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container">
+    <div class="mb-5 mt-5">
+        <form method="POST" id="ajax-form">
+            {% csrf_token %}
+
+            {{ form }}
+
+            <input type="submit" value="Post" class="tiny button">
+        </form>
+    </div>
+
+    <div id="tabela">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Remover</th>
+                </tr>
+            </thead>
+            <tbody id="linha-tabela">
+                {% for p in prods %}
+                <tr>
+                    <td style='visibility: hidden;'>{{p.id}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.category}}</td>
+                    <td>{{p.price}}</td>
+                    <td> <input type='number' id='qtt' value={{p.stored_qtt}}></td>
+                    <td><button class='btn-danger remove'>X</button></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td id="total">$ 0 </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock body %}
+
+
+{% block footer %}
+<script src="{% static 'js/jquery-3.5.1.js' %}"></script>
+<script src="{% static 'js/popper.js' %}"></script>
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock footer %}

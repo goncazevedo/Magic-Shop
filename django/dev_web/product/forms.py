@@ -8,3 +8,9 @@ class ProductForm(forms.ModelForm):
         fields = ("category", "name", "description", "price", "image", "stored_qtt" )
 
 
+class AjaxProductForm(forms.ModelForm):
+    
+    class Meta:
+        model = Product
+        fields = ("category", "name", "price", "stored_qtt" )
+
